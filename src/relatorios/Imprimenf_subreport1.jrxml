@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Imprimenf_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isSummaryWithPageHeaderAndFooter="true" uuid="73d6777a-8007-4447-b757-81960ff76dac">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="id_nota" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT data_vencimento[1] AS datavencimento1,
+       data_vencimento[2] AS datavencimento2,
+       data_vencimento[3] AS datavencimento3,
+       data_vencimento[4] AS datavencimento4,
+       data_vencimento[5] AS datavencimento5,
+       data_vencimento[6] AS datavencimento6,
+       data_vencimento[7] AS datavencimento7,
+       data_vencimento[8] AS datavencimento8,
+       data_vencimento[9] AS datavencimento9,
+       data_vencimento[10] AS datavencimento10,
+       data_vencimento[11] AS datavencimento11,
+       data_vencimento[12] AS datavencimento12,
+       valor[1] AS valor1,
+       valor[2] AS valor2,
+       valor[3] AS valor3,
+       valor[4] AS valor4,
+       valor[5] AS valor5,
+       valor[6] AS valor6,
+       valor[7] AS valor7,
+       valor[8] AS valor8,
+       valor[9] AS valor9,
+       valor[10] AS valor10,
+       valor[11] AS valor11,
+       valor[12] AS valor12
+FROM
+(
+SELECT array_agg(parcelamento.valor)
+AS valor, array_agg(parcelamento.data_vencimento) 
+AS data_vencimento
+FROM public.parcelamento  
+Where id_notafiscal = $P{id_nota}
+
+)
+AS r
+
+ORDER BY data_vencimento; ]]>
+	</queryString>
+	<field name="datavencimento1" class="java.sql.Date"/>
+	<field name="datavencimento2" class="java.sql.Date"/>
+	<field name="datavencimento3" class="java.sql.Date"/>
+	<field name="datavencimento4" class="java.sql.Date"/>
+	<field name="datavencimento5" class="java.sql.Date"/>
+	<field name="datavencimento6" class="java.sql.Date"/>
+	<field name="datavencimento7" class="java.sql.Date"/>
+	<field name="datavencimento8" class="java.sql.Date"/>
+	<field name="datavencimento9" class="java.sql.Date"/>
+	<field name="datavencimento10" class="java.sql.Date"/>
+	<field name="datavencimento11" class="java.sql.Date"/>
+	<field name="datavencimento12" class="java.sql.Date"/>
+	<field name="valor1" class="java.lang.String"/>
+	<field name="valor2" class="java.lang.String"/>
+	<field name="valor3" class="java.lang.String"/>
+	<field name="valor4" class="java.lang.String"/>
+	<field name="valor5" class="java.lang.String"/>
+	<field name="valor6" class="java.lang.String"/>
+	<field name="valor7" class="java.lang.String"/>
+	<field name="valor8" class="java.lang.String"/>
+	<field name="valor9" class="java.lang.String"/>
+	<field name="valor10" class="java.lang.String"/>
+	<field name="valor11" class="java.lang.String"/>
+	<field name="valor12" class="java.lang.String"/>
+	<group name="valor">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<group name="data_vencimento">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="70" y="0" width="57" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+					<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="0" y="0" width="70" height="15"/>
+					<textElement>
+						<font fontName="Monospaced"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{datavencimento1}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="70" y="15" width="57" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="0" y="15" width="70" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datavencimento2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="127" y="15" width="70" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datavencimento4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="197" y="15" width="59" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="197" y="0" width="59" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="127" y="0" width="70" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datavencimento3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="256" y="15" width="70" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datavencimento6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="383" y="15" width="70" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datavencimento8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="326" y="15" width="57" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor6}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="453" y="15" width="59" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="326" y="0" width="57" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="383" y="0" width="70" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datavencimento7}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3fd0c245-8351-485e-a25a-8606d655dc7b" x="453" y="0" width="59" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="7ae1d24c-3c1b-4cfb-a189-03361a869b0c" x="256" y="0" width="70" height="15"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datavencimento5}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

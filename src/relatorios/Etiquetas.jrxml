@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16d93f74-6333-4bfd-8032-bddc7d9c6272">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechamento" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT  empresa.nome_empresa,
+empresa.rua,
+empresa.numero, 
+empresa.complemento, 
+empresa.bairro,
+empresa.cidade,
+empresa.cep 
+FROM public.ocorrencias, 
+public.empresa,
+public.mensalidades,  
+public.fechamento 
+WHERE ocorrencias.id_empresa = empresa.id_empresa 
+AND  ocorrencias.id_fechamento = fechamento.id_fechamento 
+AND fechamento.nome_fechamento = $P{fechamento}
+OR  ( empresa.id_empresa = mensalidades.id_empresa 
+AND (mes_cobranca = 13 OR mes_cobranca= (select mes_referencia from public.fechamento where nome_fechamento = $P{fechamento}) )) 
+Group by empresa.nome_empresa, empresa.rua,
+empresa.numero, 
+empresa.complemento, 
+empresa.bairro,
+empresa.cidade,
+empresa.cep ]]>
+	</queryString>
+	<field name="nome_empresa" class="java.lang.String"/>
+	<field name="rua" class="java.lang.String"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="complemento" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="cep" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="111" splitType="Stretch">
+			<textField>
+				<reportElement uuid="147e747d-d323-4abb-b2d3-284f1c6a8ba2" x="15" y="32" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome_empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="707d96d3-1995-48de-b22c-17982e3590cc" x="15" y="12" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Destinatário:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="30b8cefa-4f81-4999-b27c-4fc3c1dc044b" x="294" y="12" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Remetente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="05c76ff6-e1fc-41ba-9cf4-e99bd68f536a" x="294" y="32" width="225" height="67"/>
+				<textElement/>
+				<text><![CDATA[Accept Soluções em TI
+Rua: Julio de Castilhos  Número: 2951
+Complemento: Sala 804
+Cep 95010-005
+Caxias do sul  RS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="935282df-603b-413e-8a59-8c7a655d7000" x="15" y="45" width="29" height="13"/>
+				<textElement/>
+				<text><![CDATA[Rua:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="935282df-603b-413e-8a59-8c7a655d7000" x="144" y="45" width="49" height="13"/>
+				<textElement/>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="147e747d-d323-4abb-b2d3-284f1c6a8ba2" x="44" y="45" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="147e747d-d323-4abb-b2d3-284f1c6a8ba2" x="193" y="45" width="73" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="935282df-603b-413e-8a59-8c7a655d7000" x="15" y="58" width="75" height="13"/>
+				<textElement/>
+				<text><![CDATA[Complemento:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="147e747d-d323-4abb-b2d3-284f1c6a8ba2" x="90" y="58" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{complemento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="935282df-603b-413e-8a59-8c7a655d7000" x="15" y="71" width="29" height="13"/>
+				<textElement/>
+				<text><![CDATA[CEP:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="147e747d-d323-4abb-b2d3-284f1c6a8ba2" x="44" y="71" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="eaead881-33e7-4e02-a426-1da4f5a8dc56" x="15" y="84" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Caxias do sul RS]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

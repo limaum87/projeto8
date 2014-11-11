@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdemdeCompra_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3f1b0f14-fe58-40d6-8896-12b488cd4716">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="os" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+itens.nome_item, valor_compra,public.grupo_item.nome_grupo,count(*)
+FROM 
+  public.itens,
+  public.ordem_compra,
+  public.grupo_item
+ WHERE 
+  itens.id_ordem_compra='36'
+AND
+  itens.id_ordem_compra = ordem_compra.id_ordem_compra AND
+  itens.id_grupo = grupo_item.id_grupo
+  Group by
+  itens.nome_item, valor_compra,public.grupo_item.nome_grupo
+  ORDER BY nome_item;]]>
+	</queryString>
+	<field name="nome_item" class="java.lang.String"/>
+	<field name="valor_compra" class="java.lang.String"/>
+	<field name="nome_grupo" class="java.lang.String"/>
+	<field name="count" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="213" height="20" uuid="afa88de2-cbfa-4616-bfd9-78881c4f4c19"/>
+				<textFieldExpression><![CDATA[$F{nome_item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="0" width="51" height="20" uuid="ab5dd3ca-2d38-4167-ac66-c100654d95af"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="76" height="20" uuid="3d85c123-59f6-467f-bb98-9b88e3ec6a2b"/>
+				<textFieldExpression><![CDATA[$F{nome_grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="100" height="20" uuid="5a471546-7834-43e1-9cea-2ba63f0116f6"/>
+				<textFieldExpression><![CDATA[$F{valor_compra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

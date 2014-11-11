@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2cc0e42d-831e-4794-8689-658721d01c96">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="36"/>
+	<queryString>
+		<![CDATA[SELECT 
+  ocorrencias.id_ocorrencia, 
+  ocorrencias.ocorrencia,
+  empresa.nome_empresa, 
+  status.nome_status
+FROM 
+  public.ocorrencias, 
+  public.empresa, 
+  public.status
+WHERE 
+  ocorrencias.id_empresa = empresa.id_empresa AND 
+  ocorrencias.id_status = status.id_status
+ORDER BY
+ocorrencias.id_ocorrencia;]]>
+	</queryString>
+	<field name="id_ocorrencia" class="java.lang.Integer"/>
+	<field name="ocorrencia" class="java.lang.String"/>
+	<field name="nome_empresa" class="java.lang.String"/>
+	<field name="nome_status" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement uuid="a02d8a27-5c03-4fe9-ad3a-96be42544ff4" x="179" y="0" width="198" height="71"/>
+				<imageExpression><![CDATA["/home/felipe/NetBeansProjects/Projeto8/src/gui/icones/994.gif"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="05052962-6a7a-4a30-b795-3a279df04a3a" x="204" y="50" width="132" height="29"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chamados]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="531f87cd-e1db-4dbc-b463-136c4890dff3" x="37" y="2" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[Numero OS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4b438175-df82-480d-bed5-fced726593f9" x="95" y="2" width="165" height="20"/>
+				<textElement/>
+				<text><![CDATA[    Ocorrencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0aaaa1da-952c-43a9-a5f0-207273786842" x="260" y="2" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="62f78d44-5c38-4457-ab0e-d12d9bbc649d" x="360" y="2" width="146" height="20"/>
+				<textElement/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="9db645ad-bd64-4c0c-984f-90f850f97af6" x="37" y="0" width="58" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id_ocorrencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d888ad3c-e887-4a89-9b39-3c37cdfdcd55" x="95" y="0" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{ocorrencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f1267d32-b655-4be5-a83f-1141929213e4" x="260" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome_empresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="59130536-5858-488f-a6d6-9ffb4d7d49d7" x="360" y="0" width="146" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome_status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

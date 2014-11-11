@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="20" uuid="27b0d972-daea-4d90-aeb4-45c7e81a4c25">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="25"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_nota" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+  notafiscal.id_nota, 
+  nf_operacao.nome_operacao, 
+  nf_operacao.cfop, 
+  notafiscal.data_emissao, 
+  notafiscal.data_saida, 
+  notafiscal.hora_saida, 
+  notafiscal.valor_nota, 
+  empresa.razaosocial, 
+  empresa.rua, 
+  empresa.numero, 
+  empresa.complemento, 
+  empresa.bairro, 
+  empresa.cidade, 
+  empresa.telefone, 
+  empresa.cnpj, 
+  parcelamento.valor, 
+  parcelamento.data_vencimento
+FROM 
+  public.notafiscal, 
+  public.nf_operacao, 
+  public.empresa, 
+  public.parcelamento
+WHERE 
+  notafiscal.id_empresa = empresa.id_empresa AND
+  nf_operacao.id_operacao = notafiscal.id_cfop AND
+  parcelamento.id_notafiscal = notafiscal.id_nota AND
+  notafiscal.id_nota= $P{id_nota};]]>
+	</queryString>
+	<field name="id_nota" class="java.lang.Integer"/>
+	<field name="nome_operacao" class="java.lang.String"/>
+	<field name="cfop" class="java.lang.String"/>
+	<field name="data_emissao" class="java.sql.Date"/>
+	<field name="data_saida" class="java.sql.Date"/>
+	<field name="hora_saida" class="java.lang.String"/>
+	<field name="valor_nota" class="java.lang.String"/>
+	<field name="razaosocial" class="java.lang.String"/>
+	<field name="rua" class="java.lang.String"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="complemento" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="cnpj" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<field name="data_vencimento" class="java.sql.Date"/>
+	<title>
+		<band height="607" splitType="Stretch">
+			<textField>
+				<reportElement uuid="c7dd59c1-f91d-46e3-b6d4-cfe8cf55c1de" x="465" y="40" width="100" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_nota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="84e84428-4631-4f39-be5c-438af2a32124" x="300" y="40" width="10" height="16"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="34216b09-4c1f-44b0-8de5-4eb0405103bc" x="20" y="80" width="130" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_operacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="34216b09-4c1f-44b0-8de5-4eb0405103bc" x="167" y="80" width="146" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cfop}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="20" y="105" width="268" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{razaosocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="322" y="105" width="100" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cnpj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="465" y="105" width="100" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_emissao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="465" y="126" width="100" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_saida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="20" y="126" width="130" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="154" y="126" width="36" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="186" y="126" width="71" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{complemento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="257" y="126" width="102" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="20" y="146" width="110" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="154" y="146" width="79" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="465" y="146" width="100" height="20"/>
+				<textElement>
+					<font fontName="Monospaced"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_saida}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ee326cd6-e219-4962-9f5c-b21daad8de58" x="20" y="384" width="230" height="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[SERVICOS PRESTADOS EM INFORMATICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="257" y="448" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="257" y="430" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="167" y="448" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="450" y="448" width="88" height="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_nota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0ec53b6c-316e-4026-ab87-8971450ceefd" x="64" y="471" width="51" height="13"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[O MESMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="231ffa4f-e576-4306-843e-53f2d35ba1bf" x="304" y="471" width="19" height="12"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b92347f1-53b3-43ae-91e5-33bf14de4a5c" x="39" y="510" width="8" height="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5acceb7e-f2d3-4b99-9781-8553c9f3f414" x="116" y="510" width="63" height="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[VOLUMES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0a74915b-3905-4f80-b93c-dacb4c92a64d" x="30" y="558" width="227" height="19"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[Empresa enquadrada no simples nacional ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="35469bc4-8530-4aa9-bbc6-ef469204ccc3" x="30" y="571" width="100" height="12"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[Dados Bancarios:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d5cfd949-a1e5-4b65-a3b9-6116a570df19" x="30" y="583" width="234" height="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[Banco Itau, Agencia 20200 Conta 45122-6]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="72db45e0-85ce-4e50-992b-af9997c8d8a8" x="468" y="403" width="88" height="20"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_nota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="64" y="430" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="348" y="430" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="167" y="430" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="471" y="430" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="348" y="448" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e735a84a-b273-4a7f-aa5a-459a86dedba3" x="65" y="448" width="52" height="15"/>
+				<textElement>
+					<font fontName="Monospaced" size="10"/>
+				</textElement>
+				<text><![CDATA[0,00]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="d32e0bfc-34d4-45c2-b7f2-b34f9eafe19d" x="20" y="188" width="536" height="100"/>
+				<subreportParameter name="id_nota">
+					<subreportParameterExpression><![CDATA[$F{id_nota}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Imprimenf_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+</jasperReport>

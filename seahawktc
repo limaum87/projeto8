@@ -1,0 +1,348 @@
+UPDATE config SET versao = '1.0.8'
+
+1.0.2
+
+CREATE TABLE itens_nota
+(
+  id_itemnota serial NOT NULL,
+  id_nota integer,
+  id_item integer,
+  nome_item character varying,
+  quantidade integer,
+  valor_unitario character varying,
+  valor_total character varying,
+  CONSTRAINT itens_nota_pkey PRIMARY KEY (id_itemnota)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE itens_nota OWNER TO postgres;
+
+1.0.5
+-- Table: notafiscal
+
+-- DROP TABLE notafiscal;
+
+CREATE TABLE notafiscal
+(
+  id_nota serial NOT NULL,
+  id_empresa integer NOT NULL,
+  id_cfop integer NOT NULL,
+  data_emissao date NOT NULL,
+  data_saida date NOT NULL,
+  hora_saida character varying NOT NULL,
+  valor_nota character varying NOT NULL,
+  id_fechamento integer,
+  id_venda integer,  <---------------------------------------------
+  CONSTRAINT nf_id_nota PRIMARY KEY (id_nota),
+  CONSTRAINT "Id_cfop" FOREIGN KEY (id_cfop)
+      REFERENCES nf_operacao (id_operacao) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT id_empresa FOREIGN KEY (id_empresa)
+      REFERENCES empresa (id_empresa) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE notafiscal OWNER TO postgres;
+
+-- Table: empresa
+
+-- DROP TABLE empresa;
+
+CREATE TABLE empresa
+(
+  id_empresa serial NOT NULL,
+  nome_empresa character varying NOT NULL,
+  razaosocial character varying NOT NULL,
+  rua character varying NOT NULL,
+  numero character varying NOT NULL,
+  complemento character varying NOT NULL,
+  bairro character varying NOT NULL,
+  cidade character varying NOT NULL,
+  email character varying NOT NULL,
+  telefone character varying,
+  inscricao_estadual character varying,
+  cnpj character varying NOT NULL,
+  deslocamento character varying,
+  cep character varying NOT NULL,
+  estado character varying, <---------------------------------------------
+  CONSTRAINT id_empresa PRIMARY KEY (id_empresa),
+  CONSTRAINT nomeunico UNIQUE (nome_empresa)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE empresa OWNER TO postgres;
+
+-- Table: notafiscal
+
+-- DROP TABLE notafiscal;
+
+CREATE TABLE notafiscal
+(
+  id_nota serial NOT NULL,
+  id_empresa integer NOT NULL,
+  id_cfop integer NOT NULL,
+  data_emissao date NOT NULL,
+  data_saida date NOT NULL,
+  hora_saida character varying NOT NULL,
+  valor_nota character varying NOT NULL,
+  id_fechamento integer,
+  id_venda integer,
+  valor_servicos character varying,  <---------------------------------------------
+  CONSTRAINT nf_id_nota PRIMARY KEY (id_nota),
+  CONSTRAINT "Id_cfop" FOREIGN KEY (id_cfop)
+      REFERENCES nf_operacao (id_operacao) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT id_empresa FOREIGN KEY (id_empresa)
+      REFERENCES empresa (id_empresa) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE notafiscal OWNER TO postgres;
+
+1.0.6
+
+-- Table: grupo_usuario
+
+-- DROP TABLE grupo_usuario;
+
+CREATE TABLE grupo_usuario
+(
+  id_grupo serial NOT NULL,
+  nome_grupo character varying,
+  id_status integer,
+  CONSTRAINT grupousr_pk PRIMARY KEY (id_grupo)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE grupo_usuario OWNER TO postgres;
+
+-- Table: usuario
+
+-- DROP TABLE usuario;
+
+CREATE TABLE usuario
+(
+  nome character varying NOT NULL,
+  sobrenome character varying,
+  cpf character varying NOT NULL,
+  rua character varying NOT NULL,
+  complemento character varying NOT NULL,
+  bairro character varying NOT NULL,
+  email character varying NOT NULL,
+  senha character varying NOT NULL,
+  id_nome serial NOT NULL,
+  telefone character varying,
+  telefone2 character varying,
+  numero character varying,
+  id_grupo integer,  <---------------------------------------------
+  CONSTRAINT nome_pk PRIMARY KEY (id_nome)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usuario OWNER TO postgres;
+
+1.0.7
+
+-- Table: contratos
+
+-- DROP TABLE contratos;
+
+CREATE TABLE contratos
+(
+  id_contrato serial NOT NULL,
+  id_empresa integer,
+  horas_contratadas character varying,
+  horas_restantes character varying,
+  valor_contrato character varying,
+  id_status integer,
+  CONSTRAINT pk_contratos PRIMARY KEY (id_contrato)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE contratos OWNER TO postgres;
+ 
+1.0.8
+
+-- Table: notafiscal
+
+-- DROP TABLE notafiscal;
+
+CREATE TABLE notafiscal
+(
+  id_nota serial NOT NULL,
+  id_empresa integer NOT NULL,
+  id_cfop integer NOT NULL,
+  data_emissao date NOT NULL,
+  data_saida date NOT NULL,
+  hora_saida character varying NOT NULL,
+  valor_nota character varying NOT NULL,
+  id_fechamento integer,
+  id_venda integer,
+  valor_servicos character varying,
+  valor_produtos character varying, <---------------------------------------------
+  CONSTRAINT nf_id_nota PRIMARY KEY (id_nota),
+  CONSTRAINT "Id_cfop" FOREIGN KEY (id_cfop)
+      REFERENCES nf_operacao (id_operacao) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT id_empresa FOREIGN KEY (id_empresa)
+      REFERENCES empresa (id_empresa) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE notafiscal
+  OWNER TO postgres;
+
+-- Table: ocorrencias
+
+-- DROP TABLE ocorrencias;
+
+CREATE TABLE ocorrencias
+(
+  id_ocorrencia serial NOT NULL,
+  id_status integer NOT NULL,
+  id_empresa integer NOT NULL,
+  ocorrencia character varying NOT NULL,
+  data_abertura date NOT NULL,
+  data_fechamento date,
+  id_area integer NOT NULL,
+  solucao character varying NOT NULL,
+  id_nome integer NOT NULL,
+  id_usuario integer,
+  valor real,
+  id_tipo integer,
+  id_fechamento integer,
+  valor_total character varying,
+  valor_deslocamento character varying,
+  valor_equipamentos character varying,
+  lucro_equipamentos character varying,
+  pago boolean DEFAULT false,  <---------------------------------------------
+  CONSTRAINT id_ocorrencia PRIMARY KEY (id_ocorrencia),
+  CONSTRAINT area_ocorrencias_fk FOREIGN KEY (id_area)
+      REFERENCES area (id_area) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT empresa_ocorrencias_fk FOREIGN KEY (id_empresa)
+      REFERENCES empresa (id_empresa) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT status_ocorrencias_fk FOREIGN KEY (id_status)
+      REFERENCES status (id_status) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT tipo_atendimento_ocorrencias_fk FOREIGN KEY (id_tipo)
+      REFERENCES tipo_atendimento (id_tipo) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT usuario FOREIGN KEY (id_usuario)
+      REFERENCES usuario (id_nome) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE ocorrencias
+  OWNER TO postgres;
+
+UPDATE ocorrencias SET pago = 'FALSE'
+
+-- table mural
+CREATE TABLE mural
+(
+  id_mural serial NOT NULL,
+  id_usuario integer,
+  descricao character varying,
+  CONSTRAINT pk_mural PRIMARY KEY (id_mural)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE mural
+  OWNER TO postgres;
+
+1.0.10
+
+UPDATE ocorrencias SET valor_equipamentos= '0,00', lucro_equipamentos = '0,00' where lucro_equipamentos is null;
+
+-- Table: ocorrencias
+
+-- DROP TABLE ocorrencias;
+
+CREATE TABLE ocorrencias
+(
+  id_ocorrencia serial NOT NULL,
+  id_status integer NOT NULL,
+  id_empresa integer NOT NULL,
+  ocorrencia character varying NOT NULL,
+  data_abertura date NOT NULL,
+  data_fechamento date,
+  id_area integer NOT NULL,
+  solucao character varying NOT NULL,
+  id_nome integer NOT NULL,
+  id_usuario integer,
+  valor real,
+  id_tipo integer,
+  id_fechamento integer,
+  valor_total character varying,
+  valor_deslocamento character varying,
+  valor_equipamentos character varying DEFAULT '0,00'::character varying,  <---------------------------------------
+  lucro_equipamentos character varying DEFAULT '0,00'::character varying,  <---------------------------------------
+  pago boolean DEFAULT false,
+  CONSTRAINT id_ocorrencia PRIMARY KEY (id_ocorrencia),
+  CONSTRAINT area_ocorrencias_fk FOREIGN KEY (id_area)
+      REFERENCES area (id_area) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT empresa_ocorrencias_fk FOREIGN KEY (id_empresa)
+      REFERENCES empresa (id_empresa) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT status_ocorrencias_fk FOREIGN KEY (id_status)
+      REFERENCES status (id_status) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT tipo_atendimento_ocorrencias_fk FOREIGN KEY (id_tipo)
+      REFERENCES tipo_atendimento (id_tipo) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT usuario FOREIGN KEY (id_usuario)
+      REFERENCES usuario (id_nome) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE ocorrencias OWNER TO postgres;
+
+-- Table: empresa
+
+-- DROP TABLE empresa;
+
+CREATE TABLE empresa
+(
+  id_empresa serial NOT NULL,
+  nome_empresa character varying NOT NULL,
+  razaosocial character varying NOT NULL,
+  rua character varying NOT NULL,
+  numero character varying NOT NULL,
+  complemento character varying NOT NULL,
+  bairro character varying NOT NULL,
+  cidade character varying NOT NULL,
+  email character varying NOT NULL,
+  telefone character varying,
+  inscricao_estadual character varying,
+  cnpj character varying NOT NULL,
+  deslocamento character varying,
+  cep character varying,
+  estado character varying,
+  etiqueta boolean DEFAULT true, <---------------------------------------
+  CONSTRAINT id_empresa PRIMARY KEY (id_empresa),
+  CONSTRAINT nomeunico UNIQUE (nome_empresa)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE empresa OWNER TO postgres;
+

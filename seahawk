@@ -1,0 +1,113 @@
+----------1.0.2---------- (05/08/2013)
+
+01/08 - Configurado agrupamento itens nota
+02/08 - Adicionado aviso de nota existente
+05/08 - Resolvido problema de conexões abertas
+      - Lista de empresas em ordem alfabetica
+      - Adicionar empresa nao estava limpando o campo cep
+      - Adicionado interface gráfica nas exceções
+
+----------1.0.3---------- (06/08/2013)
+06/08 - Resolvido bug versão 1.0.2 , erro ao abrir o chamado
+
+----------1.0.4---------- (07/08/2013)
+06/08 - Otimizado codigo para inserção de OS
+      - Resolvido bug versão do aplicativo
+      - Resolvido bug que mostrava todos itens  ao inves de mostrar todos itens em estoque
+      - Alterado layout relatorio
+      - Funcionalidade nova: Pesquisa de os por cliente
+07/08
+      - Resolvido problema de conexão fechada ao finalizar chamado
+
+----------1.0.5----------(31/08/2013)
+
+	BUG FIXES      
+      - Resolvido problema remoção de equipamentos altera valor ordem serviço
+      - Resolvido problema no fechamento ao clicar visualizar a tabela carregava novamente os itens disponiveis
+      - Resolvido problema no fechamento ao adicionar ou remover itens não calculava corretamente
+      - Resolvido problema, parcelamento não inseria as datas corretamente
+      - Resolvido problema contagem de itens da nota, estava com o comando sql errado
+      - Resolvido redimensionamento na tela fornecedores
+      - Após adicionado fornecedores todos campos ficam em branco
+      - Após adicionado tipo de atendimento todos campos ficam em branco
+      - Notas com itens, o campo valor de servicos estava aparecendo o valor total
+      - Resolvido problema, não estava modificando fornecedor
+
+	
+	APRIMORAMENTOS
+      - Aumentado tamanho do contador de tempo em modificar chamado
+      - Retirado botão testes menu fechamento/notafiscal
+      - Criado relatorio de serviços mensais
+      - Ao abrir chamado voltar ao home
+      - Ao adicionar fornecedores adicionado dialogo padrão do sistema
+      - Ao adicionar ordem de compra volta a pagina inicial
+      - Funcionalidade nova: Pesquisa de os do mes atual
+      - Funcionalidade nova: Pesquisa de os de determinado mes 
+      - Funcionalidade nova: Pesquisa de os de determinado cliente e mes
+      - Funcionalidade nova: Dois cliques em cima do chamado na tela inicial vai para tela de finalizar chamado
+      - Funcionalidade nova: Pesquisa de os por numero de os
+      - Adicionado icone de busca de empresa na tela principal
+      - Funcionalidade nova: Finalizar fechamento, e remover fechamento
+      - Ao modificar um chamado, volta a tela principal
+      - Impressão de Etiquetas
+      - Funcionalidade nova: pesquisa de itens
+      - Funcionalidade nova: retirada de itens do estoque
+      - Funcionalidade nova: calculo automatico do valor do item
+      
+----------1.0.6----------(09/09/2013)
+
+	BUG FIXES   
+      - Ao modificar chamado, barra de pesquisa agora funciona
+      
+	APRIMORAMENTOS
+      - Permite ordenamento das tabelas pela coluna selecionada
+      
+----------1.0.7---------- (15/09/2013)
+      
+	BUG FIXES   
+      - Relatorios saindo corretamente as paginas
+      - Relatorio de mensalidade com espaçamento corrigido
+
+	APRIMORAMENTOS
+      - Adicionado técnico no relatorio de OS
+      
+----------1.0.8---------- (04/10/2013)
+	
+	BUG FIXES   
+      - Aparecendo corretamente o valor de produtos na nota fiscal
+      - Ao modificar empresa, o estado estava sendo salvo errado
+       
+	APRIMORAMENTOS
+      - Funcionalidade nova: Criado menu controle pagamentos
+      - Funcionalidade nova: Criado mural de anotações
+      - Funcionalidade nova: Criado menu de busca de pagamentos
+
+----------1.0.9---------- (06/11/2013)
+
+	BUG FIXES
+      - Controle de pagamentos exibindo pagamentos dobrado
+      
+	APRIMORAMENTOS
+      - Funcionalidade nova : Controle de pagamentos de pessoas fisicas
+      - Mostra data de abertura do chamado na pagina inicial e de busca
+      - Alterado modo exibição itens em estoque
+      - Impressão direto na impressora matricial
+
+----------1.0.10---------- 
+        BUG FIXES
+      - O.S saindo com preço no formato correto  (00,00)
+      - Campo Deslocamento aceitando somente valores
+      - Na OS quando não tem nenhum equipamento, agora aparece o valor (0,00) 
+      - Na nota fiscal, todos valores estão com virgulas ao inves de pontos e aparecendo corretamente (0,00)
+      - Corrigido espaçamento nota fiscal
+      - Corrigido no fechamento, ultimo valor de boleto ficava na tela
+      - Corrigido lentidão ao criar um novo fechamento
+      - Corrigido data de compra ao adicionar um nova ordem de compra
+
+	APRIMORAMENTOS
+      - Novo menu de etiquetas
+      - Nova tela de busca nota fiscal de compra de certo item
+      - Nova tela de busca de nota fiscal de compra e venda
+
+      
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="421" pageHeight="595" columnWidth="421" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2bacda3f-98e4-4c69-adbe-a27a593b1845">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="rod" class="java.lang.Object">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cab" class="java.lang.Object">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechamento" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT empresa.nome_empresa, 
+servico.nome_servico, 
+mensalidades.valor 
+FROM public.mensalidades, 
+public.empresa, 
+public.servico
+ WHERE   
+mensalidades.status = 1 
+AND  mensalidades.id_empresa = empresa.id_empresa 
+AND   mensalidades.id_servico = servico.id_servico 
+AND  empresa.nome_empresa = $P{empresa} 
+AND  (mensalidades.mes_cobranca = (select fechamento.mes_referencia from fechamento where nome_fechamento = $P{fechamento}) OR  mensalidades.mes_cobranca = 13)]]>
+	</queryString>
+	<field name="nome_empresa" class="java.lang.String"/>
+	<field name="nome_servico" class="java.lang.String"/>
+	<field name="valor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="149" splitType="Stretch">
+			<image isUsingCache="false">
+				<reportElement uuid="c190508a-1ebe-4c0c-82c3-da112c4e6d6e" x="2" y="0" width="419" height="98"/>
+				<imageExpression><![CDATA[$P{cab}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="3cd0f6e8-b588-4c7e-97bb-8e40f2f555da" x="29" y="121" width="337" height="28"/>
+				<textElement/>
+				<textFieldExpression><![CDATA["Prezado Cliente "+ $F{nome_empresa} +", segue abaixo descritivo dos serviços prestados durante o mês passado "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0ba45c19-7736-497c-866f-b3095ab7d0c5" x="28" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Serviço:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0ba45c19-7736-497c-866f-b3095ab7d0c5" x="218" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Valor:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement uuid="94943dd9-e3f2-4caa-8c8d-dc74669a9133" x="28" y="0" width="190" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome_servico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="94943dd9-e3f2-4caa-8c8d-dc74669a9133" x="218" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="149" splitType="Stretch">
+			<image isUsingCache="false">
+				<reportElement uuid="d585f9ea-df10-4939-9c13-06d2f2553fcb" x="2" y="67" width="419" height="82"/>
+				<imageExpression><![CDATA[$P{rod}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="992919b1-a56d-4226-82b8-09b04427fae7" x="29" y="0" width="365" height="77"/>
+				<textElement/>
+				<text><![CDATA[Acompanha este documento o boleto bancário refertente aos valores discriminados somado aos aetendimentos prestados.
+
+Atenciosamente,
+Accept Soluções em Tecnologia da Informação LTDA.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

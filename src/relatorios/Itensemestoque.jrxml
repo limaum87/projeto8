@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="18171d0a-144f-4d34-90fd-20655bb4fdb1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT itens.nome_item, count(*) as total FROM public.itens, public.grupo_item WHERE id_status_item = '1' AND itens.id_grupo = grupo_item.id_grupo group by itens.nome_item ORDER BY itens.nome_item ASC]]>
+	</queryString>
+	<field name="nome_item" class="java.lang.String"/>
+	<field name="total" class="java.lang.Long"/>
+	<title>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="396c6a86-660d-414c-bc6c-18f20b145dc1" x="20" y="0" width="232" height="36"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Itens em Estoque]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="770b33f0-dfca-4c93-86e7-b982f7ca979c" x="20" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Nome Item]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="770b33f0-dfca-4c93-86e7-b982f7ca979c" x="348" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="0a2f6065-dd3b-4dd8-a2af-8a1761cb7356" x="20" y="0" width="328" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nome_item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0a2f6065-dd3b-4dd8-a2af-8a1761cb7356" x="348" y="0" width="168" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
